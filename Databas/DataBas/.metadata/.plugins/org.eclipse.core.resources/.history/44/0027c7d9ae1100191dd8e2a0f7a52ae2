@@ -1,0 +1,100 @@
+package javaFxTester;
+
+
+import com.mongodb.client.MongoClients;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+
+import org.bson.Document;
+import org.bson.codecs.configuration.CodecProvider;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+
+public class MongoTest {
+	
+	MongoClient mongo;
+	MongoDatabase db;
+	
+	public MongoTest() {
+		
+		CodecProvider pojoCodecProvider = PojoCodecProvider.builder().register("org.example.pojos").build();
+		CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));	
+		System.out.println("Made Codec");
+
+		MongoClientSettings settings = MongoClientSettings.builder()
+		        .codecRegistry(pojoCodecRegistry)
+		        .build();
+		mongo = MongoClients.create(settings);
+		System.out.println("DB client is up...");
+		
+	}
+	
+	
+	
+	public void run() {
+
+		MongoDatabase database = mongo.getDatabase("Lab2DB");
+		System.out.println("Database connection is up...");
+				
+		
+		MongoCollection<Document> bookCollection = database.getCollection("Books");
+		TestClass test = new TestClass("Test", 99);
+		
+		bookCollection.insertOne(toDoc(test));
+		
+		
+		
+	}
+	public Document toDoc(TestClass t) {
+		Document asDoc = new Document();
+		asDoc.append("param", t.getParam());
+		asDoc.append("value", t.getValue());
+		
+		
+		
+		return asDoc;
+	}
+	public TestClass toClass(Document d) {
+		TestClass t  = new TestClass();
+		
+		
+		return t;
+	}
+	
+	private class TestClass{
+		private String param;
+		private int value;
+		
+		public TestClass() {
+			
+		}
+		public TestClass(String p, int v) {
+			setValue(v);
+			setParam(p);
+			
+		}
+
+		public String getParam() {
+			return param;
+		}
+
+		public void setParam(String param) {
+			this.param = param;
+		}
+
+		public int getValue() {
+			return value;
+		}
+
+		public void setValue(int value) {
+			this.value = value;
+		}
+	}
+	
+}

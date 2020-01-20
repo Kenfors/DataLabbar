@@ -1,0 +1,11 @@
+1544429377283	Rename type 'DB_handler'
+1544429466284	Rename package 'Books'
+1544429472894	Move compilation unit
+1544436646519	Delete element
+1544436673888	Move compilation unit
+1544441960486	Encapsulate field 'reviews'
+1544442374363	Rename type 'BookPage'
+1544445892324	Delete element
+1544447126525	Delete element
+1544457244304	Rename field 'booksView'
+1544457253808	Rename field 'booksDb'

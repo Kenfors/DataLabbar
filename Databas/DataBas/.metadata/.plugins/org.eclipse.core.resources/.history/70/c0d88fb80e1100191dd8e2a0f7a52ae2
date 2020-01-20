@@ -1,0 +1,54 @@
+package javaFxTester;
+
+
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+
+import org.bson.Document;
+import org.bson.codecs.configuration.CodecProvider;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+
+import java.awt.print.Book;
+
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+
+public class MongoTest {
+	
+	MongoClient mongo;
+	MongoDatabase db;
+	
+	public MongoTest() {
+		
+		mongo = MongoClients.create();
+		System.out.println("DB client is up...");
+		
+	}
+	
+	
+	
+	public void run() {
+
+		MongoDatabase database = mongo.getDatabase("Lab2DB");
+		System.out.println("Database connection is up...");
+		
+		//CodecRegistry pojoCodecRegistry = PojoCodecProvider.builder().automatic(true).build();
+		
+		CodecProvider pojoCodecProvider = PojoCodecProvider.builder().register("org.example.pojos").build();
+		CodecRegistry pojoCodecRegistry = fromRegistries(null, fromProviders(pojoCodecProvider));
+		System.out.println("Made Codec");
+		
+		MongoCollection<Book> bookCollection = database.getCollection("Books", Book.class);
+		
+		System.out.println("Books: " + bookCollection.countDocuments());
+		
+		
+		
+		
+	}
+	
+}

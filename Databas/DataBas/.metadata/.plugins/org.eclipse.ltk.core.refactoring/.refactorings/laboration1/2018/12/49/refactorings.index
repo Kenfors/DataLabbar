@@ -1,0 +1,40 @@
+1543828933846	Rename type 'DB_appdata'
+1543828974618	Rename type 'DB_app'
+1543837077489	Move compilation unit
+1543837084834	Move compilation unit
+1543837131315	Move compilation unit
+1543837138292	Move compilation unit
+1543837144743	Delete element
+1543837297012	Encapsulate field 'usrName'
+1543837309155	Encapsulate field 'usrPwd'
+1543839207484	Rename package 'DB_model'
+1543839229749	Move compilation units
+1543839275179	Move compilation units
+1543839284223	Delete element
+1543839308357	Rename package 'DB_view'
+1543911309427	Encapsulate field 'isbn'
+1543911328186	Encapsulate field 'title'
+1543911348346	Encapsulate field 'release'
+1543911414511	Encapsulate field 'authorID'
+1543911420440	Encapsulate field 'firstName'
+1543911424715	Encapsulate field 'lastName'
+1543911509084	Encapsulate field 'reviewNo'
+1543911513759	Encapsulate field 'message'
+1543911518390	Encapsulate field 'score'
+1543911521696	Encapsulate field 'writtenFor'
+1543911624861	Encapsulate field 'typeID'
+1543911636145	Encapsulate field 'typeName'
+1543954898666	Rename type 'BookApp'
+1543954908992	Rename type 'Appdata'
+1543956449338	Rename field 'firstName'
+1543958883871	Encapsulate field 'author'
+1543958889392	Encapsulate field 'bookIsbn'
+1543958914423	Rename compilation unit 'AuthorWritings.java'
+1543959540087	Encapsulate field 'genres'
+1543960147513	Delete element
+1543999386465	Encapsulate field 'authors'
+1543999632734	Rename type 'Page'
+1544038709733	Delete element
+1544040897455	Rename type 'Dialog'
+1544043881272	Rename method 'stringSearch'
+1544043916053	Rename method 'textSearch'
