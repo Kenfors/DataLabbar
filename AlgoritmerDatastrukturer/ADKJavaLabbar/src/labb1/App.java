@@ -9,7 +9,9 @@ public class App {
 		
 		Uppgift1 upg1 = new Uppgift1();
 		
-		upg1.run(3);
+		System.out.println("" + "n\t" + " | " + "r");
+		for(int i=1; i <= 20; i++)
+			upg1.run(i);
 		
 		
 		

@@ -24,7 +24,7 @@ public class Uppgift1 {
 			}
 		}
 		
-		System.out.println("R:" + r);
+		System.out.println("" + n + "\t | " + r);
 		
 		
 	}

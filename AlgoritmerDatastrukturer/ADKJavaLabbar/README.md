@@ -14,6 +14,27 @@ intervallet 1-40.
 Här är det också rimligt att dra en linje mellan punkterna. Redovisa polynomet T(n)
 med koefficienterna i rimlig bråkform. Redovisa också ordo
 
+n	 | r
+1	 | 1
+2	 | 7
+3	 | 25
+4	 | 65
+5	 | 140
+6	 | 266
+7	 | 462
+8	 | 750
+9	 | 1155
+10	 | 1705
+11	 | 2431
+12	 | 3367
+13	 | 4550
+14	 | 6020
+15	 | 7820
+16	 | 9996
+17	 | 12597
+18	 | 15675
+19	 | 19285
+20	 | 23485
 
 ##### Uppgift 2.
 
