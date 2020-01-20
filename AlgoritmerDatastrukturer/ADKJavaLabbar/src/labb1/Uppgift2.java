@@ -30,11 +30,12 @@ public class Uppgift2<E> implements Iterable<E>, Collection<E>{
 			return this.point.next != null;
 		}
 		
+		@SuppressWarnings("unchecked")
 		@Override
-		public Object next() {
+		public E next() {
 			Node<E> current = this.point;
 			this.point = this.point.next;			
-			return current;
+			return (E) current;
 		}
 		
 	}
@@ -113,19 +114,28 @@ public class Uppgift2<E> implements Iterable<E>, Collection<E>{
 	@Override
 	public boolean contains(Object o) {
 		// TODO Auto-generated method stub
+		Iterator<E> iter = this.iterator();
+		while (iter.hasNext()) {
+			if (iter.next() == o) return true;
+		}
 		return false;
 	}
 
 	@Override
-	public boolean containsAll(Collection c) {
+	public boolean containsAll(Collection<?> c) {
 		// TODO Auto-generated method stub
-		return false;
+		Iterator<?> iter = c.iterator();
+		while(iter.hasNext()) {
+			if(!this.contains(iter.next())) return false;
+		}
+		return true;
+
 	}
 
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return false;
+		return size == 0;
 	}
 
 	@Override
@@ -149,7 +159,7 @@ public class Uppgift2<E> implements Iterable<E>, Collection<E>{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.size;
 	}
 
 	@Override
