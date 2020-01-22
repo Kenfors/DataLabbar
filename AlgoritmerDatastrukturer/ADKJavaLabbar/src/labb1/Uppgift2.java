@@ -2,7 +2,7 @@ package labb1;
 
 import java.util.*;
 
-public class Uppgift2<E> implements Iterable<E>, Collection<E>, List{
+public class Uppgift2<E> implements Iterable<E>, Collection<E>, List {
 	
 	private class Node<E> {
 		

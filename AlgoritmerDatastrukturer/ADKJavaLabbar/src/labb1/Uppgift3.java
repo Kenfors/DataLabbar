@@ -3,15 +3,13 @@ package labb1;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Uppgift2b<E> implements Iterable<E>{
+public class Uppgift3<E> implements Iterable<E>{
 
 	private Node<E> head;
-	private Node<E> tail;
 	private int size;
 	
-	public Uppgift2b() {
+	public Uppgift3() {
 		head = null;
-		tail = head;
 		size = 0;
 	}
 	
@@ -36,25 +34,37 @@ public class Uppgift2b<E> implements Iterable<E>{
 	private class NodeIterator implements Iterator<E>{
 		
 		private Node<E> current;
+		private Node<E> last;
 		
 		
 		public NodeIterator(Node<E> head) {
 			this.current = head;
+			this.last = null;
 		}
 
 		@Override
 		public boolean hasNext() {
 			// TODO Auto-generated method stub
-			return current != null;
+			return current.next != null;
 		}
 
 		@Override
 		public E next() {
 			// TODO Auto-generated method stub
 			if(this.current == null) throw new NoSuchElementException();
-			E retData = this.current.data;
+			if(last == null) {
+				last = current;
+				return current.data;
+			}
+			this.last = this.current;
 			this.current = this.current.next;
-			return retData;
+			return current.data;
+		}
+		
+		@Override
+		public void remove() {
+			last.next = (hasNext()) ? current.next : null;
+			
 		}
 		
 	}
@@ -64,18 +74,14 @@ public class Uppgift2b<E> implements Iterable<E>{
 	public boolean add(E element) {
 		if(size == 0) {
 			head = new Node<E>(element);
-			tail = head;
 			size++;
 			return true;
 		}
 		
-		tail.next = new Node<E>(element);
-		tail = tail.next;
-		size++;
-		//Node<E> current = head;		
-		//while(current.next != null) current = current.next;
-		//current.next = new Node<E>(element);
-		//this.size++;
+		Node<E> current = head;		
+		while(current.next != null) current = current.next;
+		current.next = new Node<E>(element);
+		this.size++;
 		return true;
 	}
 	
@@ -87,12 +93,6 @@ public class Uppgift2b<E> implements Iterable<E>{
 			this.size++;
 			return true;
 		}
-		else if(index == size()) {
-			tail.next = new Node<E>(element);
-			tail = tail.next;
-			size++;
-			return true;
-		}
 		
 		while(--index > 0) current = current.next;
 		current.next = new Node<E>(current.next,element);
@@ -102,7 +102,6 @@ public class Uppgift2b<E> implements Iterable<E>{
 	
 	public E get(int index) {
 		if(index > this.size-1 || index < 0) throw new IndexOutOfBoundsException("" + index);
-		if(index == size-1) return tail.data; // O(1)
 		Node<E> current = head;
 		while(index-- > 0) current = current.next;
 		return current.data;
@@ -112,6 +111,25 @@ public class Uppgift2b<E> implements Iterable<E>{
 		return this.size;
 	}
 	
+	public E remove(int index) {
+		if(index > this.size-1 || index < 0) throw new IndexOutOfBoundsException("" + index);
+		E removed = null;
+		if(index == 0) {
+			size--;
+			removed = head.data;
+			this.head = head.next;
+			return removed;
+		}
+		
+		Iterator<E> iter = iterator();
+		System.out.println(index);
+		while(index-- >= 0) removed = iter.next();
+		iter.remove();
+		size--;
+		return removed;
+	}
+	
+	/*
 	public E remove(int index) {
 		if(index > this.size-1 || index < 0) throw new IndexOutOfBoundsException("" + index);
 		Node<E> current = head;
@@ -125,18 +143,14 @@ public class Uppgift2b<E> implements Iterable<E>{
 		
 		while(--index > 0) current = current.next;
 		removed = current.next.data;
-		if(current.next == tail) {
-			tail = current;
-			current.next = null;
-			this.size--;
-			return removed;
-		}
-		current.next = current.next.next;
+		current.next = (current.next == null) ? null : current.next.next;
 		this.size--;
 		return removed;
 	}
+	*/
 	
 	public String toString() {
+		if (size == 0) return "[]";
 		String rturn = "[";
 		Node<E> current = head;
 		while(current != null) {
