@@ -2,7 +2,7 @@ package labb1;
 
 import java.util.*;
 
-public class Uppgift2<E> implements Iterable<E>, Collection<E>{
+public class Uppgift2<E> implements Iterable<E>, Collection<E>, List{
 	
 	private class Node<E> {
 		
@@ -35,7 +35,7 @@ public class Uppgift2<E> implements Iterable<E>, Collection<E>{
 		public E next() {
 			Node<E> current = this.point;
 			this.point = this.point.next;			
-			return (E) current;
+			return current.data;
 		}
 		
 	}
@@ -129,7 +129,6 @@ public class Uppgift2<E> implements Iterable<E>, Collection<E>{
 			if(!this.contains(iter.next())) return false;
 		}
 		return true;
-
 	}
 
 	@Override
@@ -141,19 +140,41 @@ public class Uppgift2<E> implements Iterable<E>, Collection<E>{
 	@Override
 	public boolean remove(Object o) {
 		// TODO Auto-generated method stub
+		Iterator<E> iter = this.iterator();
+		Node<E> current = this.head;
+		while(iter.hasNext()) {
+			if(current.next == o) {
+				current.next = current.next.next;
+				return true;
+				
+			}
+			current = head.next;
+			iter.next();
+		}
 		return false;
 	}
 
 	@Override
-	public boolean removeAll(Collection c) {
+	public boolean removeAll(Collection<?> c) {
 		// TODO Auto-generated method stub
+		Iterator<?> iter = c.iterator();
+		while(iter.hasNext()) {
+			remove(iter.next());
+		}
 		return false;
 	}
 
 	@Override
 	public boolean retainAll(Collection c) {
 		// TODO Auto-generated method stub
-		return false;
+		Iterator<?> iter = c.iterator();
+		while(iter.hasNext()) {
+			Object current = iter.next();
+			if(!this.contains(current)) {
+				this.remove(current);
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -178,6 +199,78 @@ public class Uppgift2<E> implements Iterable<E>, Collection<E>{
 	public Iterator<E> iterator() {
 		// TODO Auto-generated method stub
 		return new NodeIterator(this.head);
+	}
+
+
+
+	@Override
+	public Object get(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public int indexOf(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public int lastIndexOf(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public ListIterator listIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public ListIterator listIterator(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Object remove(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public boolean removeAll(Collection arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	@Override
+	public Object set(int arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public List subList(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
