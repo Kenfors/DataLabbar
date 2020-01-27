@@ -14,6 +14,27 @@ intervallet 1-40.
 Här är det också rimligt att dra en linje mellan punkterna. Redovisa polynomet T(n)
 med koefficienterna i rimlig bråkform. Redovisa också ordo
 
+
+c och n0 så att:
+c*O(g(n0)) > T(f(n0)) för alla n > n0
+
+i = n
+j = (1 + 2 + 3 ... n) = n/2 ?
+k = (2 + 3 + 4 ... n) = n/2 -1 ?
+m = (1 + )
+i * j * k * m
+
+
+for (int i=1; i <= n; i++) {
+    for (int j=1; j <= i; j++) {
+        for (int k=j; k <= j+i; k++) {
+            for (int m=1; m <= i+j-k; m++) {
+                r++;
+            }
+        }
+    }
+}
+
 n	 | r
 1	 | 1
 2	 | 7

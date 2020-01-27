@@ -12,9 +12,12 @@ public class ADK {
 	public static void main(String[] args) {
 
 		
+		// Alla labbar (tryck enter för gå till nästa)
 		//labb1();
 		
-		demoupg3();
+		demoupg1();
+		
+		//demoupg3();
 		
 		
 		

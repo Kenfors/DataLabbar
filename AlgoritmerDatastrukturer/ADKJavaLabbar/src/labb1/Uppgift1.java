@@ -28,6 +28,6 @@ public class Uppgift1 {
 		
 		
 	}
-	
+
 	
 }
