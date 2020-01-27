@@ -28,6 +28,11 @@ for (int i=1; i <= n; i++) {
 ```
 ![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/empirisk.PNG)
 **Uppenbar O(n^3), då koefficienterna på n^4 och n^5 nästan är 0**
+**Koef för kubisk: 5.67, -71.71, 356.33, -455**
+
+
+
+
 
 ##### Uppgift 2.
 
