@@ -33,7 +33,7 @@ plt.ylabel("r")
 plt.xlabel("n")
 
 
-
+"""
 poly = np.polyfit(x,y,2)
 poly_1d = np.poly1d(poly)
 xaxis = np.linspace(x[0], x[-1], 50)
@@ -43,7 +43,7 @@ equation = str(round(poly[0], 2)) + "n^2 + "
 equation += str(round(poly[1],2)) + "n + " 
 equation += str(round(poly[2], 2))
 plt.plot(xaxis, yaxis, label="T(" + equation + ")")
-
+"""
 poly = np.polyfit(x,y,3)
 poly_1d = np.poly1d(poly)
 xaxis = np.linspace(x[0], x[-1], 50)
@@ -54,7 +54,7 @@ equation += str(round(poly[1], 2)) + "n^2 + "
 equation += str(round(poly[2], 2)) + "n + " 
 equation += str(round(poly[3], 2))
 plt.plot(xaxis, yaxis, label="T(" + equation + ")")
-
+"""
 poly = np.polyfit(x,y,4)
 poly_1d = np.poly1d(poly)
 xaxis = np.linspace(x[0], x[-1], 50)
@@ -66,7 +66,8 @@ equation += str(round(poly[2], 2)) + "n^2 + "
 equation += str(round(poly[3], 2)) + "n + " 
 equation += str(round(poly[4], 2))
 plt.plot(xaxis, yaxis, label="T(" + equation + ")")
-
+"""
+"""
 poly = np.polyfit(x,y,5)
 poly_1d = np.poly1d(poly)
 xaxis = np.linspace(x[0], x[-1], 50)
@@ -78,6 +79,9 @@ equation += str(round(poly[3], 2)) + "n^2 + "
 equation += str(round(poly[4], 2)) + "n + " 
 equation += str(round(poly[5], 2))
 plt.plot(xaxis, yaxis, label="T(" + equation + ")")
+"""
+x = np.linspace(1, 20, 100)
+plt.plot(x, 6*x**3, label="O(n^3), c=6, 2.5 < n0 < 2.7")
 
 plt.legend()
 plt.show()

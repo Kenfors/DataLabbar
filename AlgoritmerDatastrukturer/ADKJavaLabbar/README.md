@@ -26,7 +26,7 @@ i * j * k * m
 
 <code>
 for (int i=1; i <= n; i++) {
-    for (int j=1; j <= i; j++) {
+#for (int j=1; j <= i; j++) {
         for (int k=j; k <= j+i; k++) {
             for (int m=1; m <= i+j-k; m++) {
                 r++;
@@ -35,7 +35,7 @@ for (int i=1; i <= n; i++) {
     }
 }
 </code>
-![Grafer](./empirisk.png)
+
 **Uppenbar n^3, då koefficienterna på n^4 och n^5 nästan är 0**
 
 ##### Uppgift 2.
