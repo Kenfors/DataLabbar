@@ -15,16 +15,7 @@ Här är det också rimligt att dra en linje mellan punkterna. Redovisa polynome
 med koefficienterna i rimlig bråkform. Redovisa också ordo
 
 
-c och n0 så att:
-c*O(g(n0)) > T(f(n0)) för alla n > n0
-
-i = n
-j = (1 + 2 + 3 ... n) = n/2 ?
-k = (2 + 3 + 4 ... n) = n/2 -1 ?
-m = (1 + )
-i * j * k * m
-
-<code>
+```
 for (int i=1; i <= n; i++) {
     for (int j=1; j <= i; j++) {
         for (int k=j; k <= j+i; k++) {
@@ -34,9 +25,9 @@ for (int i=1; i <= n; i++) {
         }
     }
 }
-</code>
-![Grafer](./empirisk.png)
-**Uppenbar n^3, då koefficienterna på n^4 och n^5 nästan är 0**
+```
+![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/empirisk.png)
+**Uppenbar O(n^3), då koefficienterna på n^4 och n^5 nästan är 0**
 
 ##### Uppgift 2.
 
