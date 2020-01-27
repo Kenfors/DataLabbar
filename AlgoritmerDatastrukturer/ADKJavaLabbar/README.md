@@ -15,16 +15,7 @@ Här är det också rimligt att dra en linje mellan punkterna. Redovisa polynome
 med koefficienterna i rimlig bråkform. Redovisa också ordo
 
 
-c och n0 så att:
-c*O(g(n0)) > T(f(n0)) för alla n > n0
-
-i = n
-j = (1 + 2 + 3 ... n) = n/2 ?
-k = (2 + 3 + 4 ... n) = n/2 -1 ?
-m = (1 + )
-i * j * k * m
-
-<code>
+```
 for (int i=1; i <= n; i++) {
 #for (int j=1; j <= i; j++) {
         for (int k=j; k <= j+i; k++) {
@@ -34,9 +25,18 @@ for (int i=1; i <= n; i++) {
         }
     }
 }
+
 </code>
 
 **Uppenbar n^3, då koefficienterna på n^4 och n^5 nästan är 0**
+=======
+```
+![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/empirisk.PNG)
+**Uppenbar O(n^3), då koefficienterna på n^4 och n^5 nästan är 0**  
+
+**Koef för kubisk: 5.67, -71.71, 356.33, -455**  
+
+**Uttryck ~ 17/3n^3 - 502/7n^2 + 356n - 455 **
 
 ##### Uppgift 2.
 
@@ -47,7 +47,17 @@ hjälp i boken men försök att lösa uppgiften själv.
 Lägg till en privat medlem tail i vår enkellänkade lista. Skriv om alla metoder så att tail alltid refererar
 till sista noden. Se också till att add(index) och get(index-1) om index == size använder tail för att bli
 O(1). Observera att remove kan behöva uppdatera tail men kan inte effektiviseras. Varför inte?
-Undvik onödiga loopar när du uppdaterar tail i remove.
+Undvik onödiga loopar när du uppdaterar tail i remove.  
 
 
+[Java](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/src/labb1/Uppgift2b.java)
+
+##### Uppgift 3.
+Också i denna uppgift ska du utgå ifrån vår lista från föreläsningen. Den ska nu inte innehålla tail. Skriv nu själv remove metoden 
+till vår iterator. Obs att den inte kan anropa remove i vår länkade lista. Denna kommer ju då gå igenom hela listan 
+för att komma till rätt nod och därmed förfela hela syftet med iteratorn. Iteratorn skall göra det effektivt att gå igenom listan. 
+Kom ihåg att testa din implementation med alla relevanta fall så att den faktiskt fungerar korrekt.
+Tips: Du kommer troligen att behöva två släppekare som pekar på elementet innan current och elementet innan detta.
+
+[Java](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/src/labb1/Uppgift3.java)
 
