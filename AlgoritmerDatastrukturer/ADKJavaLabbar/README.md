@@ -17,7 +17,7 @@ med koefficienterna i rimlig bråkform. Redovisa också ordo
 
 ```
 for (int i=1; i <= n; i++) {
-#for (int j=1; j <= i; j++) {
+    for (int j=1; j <= i; j++) {
         for (int k=j; k <= j+i; k++) {
             for (int m=1; m <= i+j-k; m++) {
                 r++;
@@ -25,9 +25,6 @@ for (int i=1; i <= n; i++) {
         }
     }
 }
-
-</code>
-
 
 ```
 ![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/empirisk.PNG)
