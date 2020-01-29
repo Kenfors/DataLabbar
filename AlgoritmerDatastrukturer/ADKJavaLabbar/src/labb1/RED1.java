@@ -1,5 +1,6 @@
 package labb1;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 import labb1.Uppgift1;
@@ -7,7 +8,7 @@ import labb1.Uppgift1;
 import labb1.Uppgift2b;
 import labb1.Uppgift3;
 
-public class ADK {
+public class RED1 {
 
 	public static void main(String[] args) {
 
@@ -15,12 +16,12 @@ public class ADK {
 		// Alla labbar (tryck enter för gå till nästa)
 		//labb1();
 		
-		demoupg1();
+		//demoupg1();
 		
 		//demoupg3();
 		
 		
-		
+		red1_3();
 			
 		
 	}
@@ -36,6 +37,48 @@ public class ADK {
 	 * Inte debugat tail så mycket
 	 * 
 	 * */
+	
+	public static void red1() {
+		Uppgift2b<String> l = new Uppgift2b<String>();
+		
+		for (int i = 0; i<4 ; i++) {
+			l.add("e" + i);
+		}
+		l.remove(3);
+		l.add(0, "först");
+		l.add("sist");
+		l.remove(0);
+		l.remove(0);
+		l.remove(0);
+		l.remove(0);
+		l.remove(0);
+		l.add(0, "test"); //bara OM man tömmer lista, och väljer att placera på 0.
+		l.add("test2");
+		l.add("sist");
+		System.out.println(l);
+		
+		
+	}
+	
+	public static void red1_3() {
+		Uppgift3<String> l = new Uppgift3<String>();
+		
+		for (int i = 0; i<4 ; i++) {
+			l.add("e" + i);
+		}
+		Iterator<String> iter = l.iterator();
+		
+		iter.next();
+		iter.remove();
+
+		iter.remove();
+		
+		
+		System.out.println(l);
+		
+	}
+	
+	
 	
 	public static void labb1() {
 		
