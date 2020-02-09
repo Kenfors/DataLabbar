@@ -7,7 +7,7 @@ public class PackageSorter {
 	private String lastLetters;
 	
 	public PackageSorter() {
-		this.MAX = 13;
+		this.MAX = 50;
 		this.lastLetters = "NONE";
 		this.lastResult = "";
 		
@@ -24,7 +24,7 @@ public class PackageSorter {
 	
 	public String toString() {
 		String verbal = "Ordning: " + this.lastLetters;
-		verbal += "\nTar " + this.lastResult.length() + " steg";
+		verbal += "\nTar " + this.lastResult.length() + " steg:" + this.lastResult;
 		return verbal;
 	}
 	
@@ -32,9 +32,15 @@ public class PackageSorter {
 		if(halt >= 4) return "------------------------------------------------------";
 		//System.out.println(moves + new String(letters));
 		if(this.isDone(letters)) {
-			System.out.println("Complete: " + moves);
+			System.out.println("Complete: " + moves + ": " + new String(letters));
+			if(this.MAX > moves.length()) {
+				this.MAX = moves.length();
+			}
 			return moves;
 		}
+		
+		moves += "s";
+		
 		char tmp = letters[4];
 		letters[4] = letters[3];
 		letters[3] = letters[2];
@@ -42,8 +48,8 @@ public class PackageSorter {
 		letters[1] = letters[0];
 		letters[0] = tmp;
 		
-		String shift = this.shift(letters.clone(), new String(moves + "s"), halt + 1);
-		String flip = this.flip(letters.clone(), new String(moves + "b"));
+		String shift = this.shift(letters.clone(), new String(moves), halt + 1);
+		String flip = this.flip(letters.clone(), new String(moves));
 		//System.out.println((shift.length() < flip.length()) ? shift : flip);
 		return (shift.length() < flip.length()) ? shift : flip;
 	}
@@ -51,16 +57,20 @@ public class PackageSorter {
 	private String flip(char[] letters, String moves) {
 		//System.out.println(moves + new String(letters));
 		if(this.isDone(letters)) {
-			System.out.println("Complete: " + moves);
+			System.out.println("Complete: " + moves + ": " + new String(letters));
+			if(this.MAX > moves.length()) {
+				this.MAX = moves.length();
+			}
 			return moves;
 		}
 		if(moves.length() >= MAX) return "------------------------------------------------------";
 		
+		moves += "b";
 		char tmp = letters[0];
 		letters[0] = letters[1];
 		letters[1] = tmp;
 
-		String s = this.shift(letters.clone(), new String(moves + "s"), 0);
+		String s = this.shift(letters.clone(), new String(moves), 0);
 		//System.out.println(moves);
 		//System.out.println(s);
 		return s;
@@ -70,7 +80,6 @@ public class PackageSorter {
 		for(int i=0; i< letters.length-1; i++) {
 			if(letters[i] > letters[i+1]) return false;
 		}
-		System.out.println("#####################################################################Done!");
 		return true;
 	}
 	
