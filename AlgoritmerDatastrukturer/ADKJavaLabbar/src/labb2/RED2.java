@@ -5,8 +5,8 @@ public class RED2 {
 	public static void main(String[] args) {
 
 		//upg4();
-		upg5();
-		//upg6();
+		//upg5();
+		upg6();
 		
 	}
 	
@@ -20,9 +20,9 @@ public class RED2 {
 	
 	public static void upg5() {
 		
-		PackageSorter pkt = new PackageSorter();
+		PackageSorter pkt = new PackageSorter(false);
 		
-		pkt.run("BECAD");
+		pkt.run("EADBC");
 		System.out.println(pkt);
 		
 	}
@@ -31,7 +31,7 @@ public class RED2 {
 		
 		Ladies chess = new Ladies();
 		
-		chess.runTest(11);
+		chess.solve(15);
 		System.out.println(chess);
 		
 	}

@@ -5,11 +5,13 @@ public class PackageSorter {
 	private int MAX;
 	private String lastResult;
 	private String lastLetters;
+	private boolean DEBUG;
 	
-	public PackageSorter() {
+	public PackageSorter(boolean showSolutions) {
 		this.MAX = 50;
 		this.lastLetters = "NONE";
 		this.lastResult = "";
+		this.DEBUG = showSolutions;
 		
 	}
 	
@@ -24,7 +26,7 @@ public class PackageSorter {
 	
 	public String toString() {
 		String verbal = "Ordning: " + this.lastLetters;
-		verbal += "\nTar " + this.lastResult.length() + " steg:" + this.lastResult;
+		verbal += "\nTar " + this.lastResult.length() + " steg: " + this.lastResult;
 		return verbal;
 	}
 	
@@ -32,7 +34,8 @@ public class PackageSorter {
 		if(halt >= 4) return "------------------------------------------------------";
 		//System.out.println(moves + new String(letters));
 		if(this.isDone(letters)) {
-			System.out.println("Complete: " + moves + ": " + new String(letters));
+			if (this.DEBUG)
+				System.out.println("Complete: " + moves + ": " + new String(letters));
 			if(this.MAX > moves.length()) {
 				this.MAX = moves.length();
 			}
@@ -57,7 +60,8 @@ public class PackageSorter {
 	private String flip(char[] letters, String moves) {
 		//System.out.println(moves + new String(letters));
 		if(this.isDone(letters)) {
-			System.out.println("Complete: " + moves + ": " + new String(letters));
+			if (this.DEBUG)
+				System.out.println("Complete: " + moves + ": " + new String(letters));
 			if(this.MAX > moves.length()) {
 				this.MAX = moves.length();
 			}

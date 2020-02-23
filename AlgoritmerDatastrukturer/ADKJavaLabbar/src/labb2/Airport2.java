@@ -105,22 +105,22 @@ public class Airport2 {
 		noOfTicks *= 12;
 		
 		System.out.println();
-		System.out.println("Antal ticks:" + noOfTicks);
+		//System.out.println("Antal ticks:" + noOfTicks);
 		
 		Random rand = new Random();
 		for(int i = 0; i < noOfTicks; i++) {
 			
-			if (rand.nextInt(100) < 5) {
+			if (i == 1) {
 				this.addArrival();
 			}
-			if (rand.nextInt(100) < 5) {
+			if (i == 2) {
 				this.addTakeoff();
 			}
 			this.tick();
 		}
 		
-		String maxWaitLanding = "" + this.arrivalWaitTimeMax;
-		String maxWaitLifting = "" + this.takeoffWaitTimeMax;
+		String maxWaitLanding = "" + this.arrivalWaitTimeMax * 5 + " minuter";
+		String maxWaitLifting = "" + this.takeoffWaitTimeMax * 5 + " minuter";
 		float avgWaitTimeLanding = (float)(this.arrivalWaitTimeTotal) / (float)this.arrivalNoOfPlanes;
 		avgWaitTimeLanding *= 5.0;
 		float avgWaitTimeLifting = (float)(this.takeoffWaitTimeTotal) / (float)this.takeoffNoOfPlanes;
@@ -133,43 +133,25 @@ public class Airport2 {
 		System.out.println();
 		System.out.println("Max wait arrivals:" + maxWaitLanding);
 		System.out.println("Max wait takeoffs:" + maxWaitLifting);
-		System.out.println("Avg wait arrivals:" + avgWaitTimeLanding);
-		System.out.println("Avg wait takeoffs:" + avgWaitTimeLifting);
+		System.out.println("Avg wait arrivals:" + avgWaitTimeLanding + " minuter");
+		System.out.println("Avg wait takeoffs:" + avgWaitTimeLifting + " minuter");
 		
 	}
 	
 	public void tick() {
-			//PRIO
-			// 1. (PROGRESS?) HÅLLER NÅGON PÅ ATT LANDA/LYFTA? -> GÖR KLART.
-			// 2. (NO PROGRESS)
-				// a. RUN LANDA -> HOLD LYFTA	
-				// b. RUN LYFTA -> HOLD LANDA
-			
-			//Handle wait times...
-			
-			// Hantera ena.
-			int planeTime = 0;
-			if (!this.arrivals.isEmpty()) {
-				if (!this.takeoffs.isEmpty() && this.takeoffs.peek().inProgress()) {
-					planeTime = this.run(this.takeoffs);
-					if(planeTime > this.takeoffWaitTimeMax) {
-						this.takeoffWaitTimeMax = planeTime;
-						
-					}
-					this.takeoffWaitTimeTotal += planeTime;
-					this.hold(this.arrivals);
-				}
-				else {
-					planeTime = this.run(this.arrivals);
-					if(planeTime > this.arrivalWaitTimeMax) {
-						this.arrivalWaitTimeMax = planeTime;
-						
-					}
-					this.arrivalWaitTimeTotal += planeTime;
-					this.hold(this.takeoffs);
-				}
-			}
-			else if (!this.takeoffs.isEmpty()) {
+
+		//PRIO
+		// 1. (PROGRESS?) HÅLLER NÅGON PÅ ATT LANDA/LYFTA? -> GÖR KLART.
+		// 2. (NO PROGRESS)
+			// a. RUN LANDA -> HOLD LYFTA	
+			// b. RUN LYFTA -> HOLD LANDA
+		
+		//Handle wait times...
+		
+		// Hantera ena.
+		int planeTime = 0;
+		if (!this.arrivals.isEmpty()) {
+			if (!this.takeoffs.isEmpty() && this.takeoffs.peek().inProgress()) {
 				planeTime = this.run(this.takeoffs);
 				if(planeTime > this.takeoffWaitTimeMax) {
 					this.takeoffWaitTimeMax = planeTime;
@@ -178,7 +160,26 @@ public class Airport2 {
 				this.takeoffWaitTimeTotal += planeTime;
 				this.hold(this.arrivals);
 			}
-			
+			else {
+				planeTime = this.run(this.arrivals);
+				if(planeTime > this.arrivalWaitTimeMax) {
+					this.arrivalWaitTimeMax = planeTime;
+					
+				}
+				this.arrivalWaitTimeTotal += planeTime;
+				this.hold(this.takeoffs);
+			}
+		}
+		else if (!this.takeoffs.isEmpty()) {
+			planeTime = this.run(this.takeoffs);
+			if(planeTime > this.takeoffWaitTimeMax) {
+				this.takeoffWaitTimeMax = planeTime;
+				
+			}
+			this.takeoffWaitTimeTotal += planeTime;
+			this.hold(this.arrivals);
+		}
+		
 		
 	}
 	

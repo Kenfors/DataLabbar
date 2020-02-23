@@ -11,7 +11,7 @@ public class Ladies {
 		lastResult = new ArrayList<String>();
 	}
 	
-	public void runTest(int n) {
+	public void solve(int n) {
 		
 		// Make board.
 		boolean[][] board = new boolean[n][n];
@@ -30,7 +30,7 @@ public class Ladies {
 		for(int k = 0; k<board[r].length;k++) {
 			if(board[r][k]) {
 				String newlyPlaced = placed;
-				newlyPlaced += "(" + r + "," + k + ")";
+				newlyPlaced += "(" + (r+1) + "," + (k+1) + ")";
 				//if(r==board.length-2) {
 				//	printBoard(board);
 				//}
@@ -142,9 +142,9 @@ public class Ladies {
 	
 	public String toString() {
 		String s = "";
-		for (int i = 0; i < this.lastResult.size(); i++) {
-			s += this.lastResult.get(i) + "\n";
-		}
+		//for (int i = 0; i < this.lastResult.size(); i++) {
+		//	s += this.lastResult.get(i) + "\n";
+		//}
 		
 		s += "\nNumber of solutions: " + this.lastResult.size();
 		
