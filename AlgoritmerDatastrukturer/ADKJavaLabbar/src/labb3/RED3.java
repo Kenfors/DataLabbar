@@ -6,7 +6,8 @@ public class RED3 {
 		
 		
 		//upg7();
-		upg8();
+		//upg8();
+		upg9();
 		
 		
 	}
@@ -23,6 +24,13 @@ public class RED3 {
 
 		Tree t = new Tree();
 		t.run();
+		
+	}
+	
+	public static void upg9() {
+
+		Radix r = new Radix();
+		r.run();
 		
 	}
 

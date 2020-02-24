@@ -22,9 +22,9 @@ public class Tree {
 		for(int i = 9; i >= 0; i--) {
 			//bst.delete(i);
 			//bst.add(new Integer(rand.nextInt()%100));
-			System.out.println(bst.maxRec());
+			//System.out.println(bst.maxIte());
 		}
-		System.out.println(bst.toString());
+		//System.out.println(bst.toString());
 		
 	}
 

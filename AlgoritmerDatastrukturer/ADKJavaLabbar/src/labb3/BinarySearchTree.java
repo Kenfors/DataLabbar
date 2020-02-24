@@ -105,9 +105,9 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	
 	public E maxIte() {
 		
+		if (root==null) return null;
 		Queue<Node<E>> queue = new LinkedList<Node<E>>();
 		E target = root.data;
-		queue.add(root);
 		queue.add(root);
 		
 		while(!queue.isEmpty()) {
