@@ -28,16 +28,15 @@ for (int i=1; i <= n; i++) {
 
 ```
 ![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/empirisk.PNG)
-I grafen ser man att storleksordningen n^3 inte passar helt.
-
-
+I grafen ser man att storleksordningen n^3 inte passar helt. 
 Analys av storleksordningen n^4 passar nästan prick på.
-
-
 
 
 ![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/empirisk2.PNG)
 
+![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/empirisk3.PNG)
+
+![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/ekvationer.PNG)
 
 ##### Uppgift 2.
 

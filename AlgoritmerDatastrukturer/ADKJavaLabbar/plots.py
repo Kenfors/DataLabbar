@@ -33,7 +33,7 @@ plt.title("Uppgift 1")
 plt.ylabel("r - antal operationer")
 plt.xlabel("n - iterationer")
 
-
+"""
 poly = np.polyfit(x,y,3)
 poly_1d = np.poly1d(poly)
 xaxis = np.linspace(x[0], x[-1], 50)
@@ -44,7 +44,7 @@ equation += str(fractions.Fraction(poly[1]).limit_denominator()) + "n^2 + "
 equation += str(fractions.Fraction(poly[2]).limit_denominator()) + "n + " 
 equation += str(fractions.Fraction(poly[3]).limit_denominator())
 plt.plot(xaxis, yaxis, label="T(" + equation + ")")
-
+"""
 
 poly = np.polyfit(x,y,4)
 poly_1d = np.poly1d(poly)
@@ -58,8 +58,11 @@ equation += str(fractions.Fraction(poly[3]).limit_denominator()) + "n + "
 equation += str(fractions.Fraction(poly[4]).limit_denominator())
 plt.plot(xaxis, yaxis, label="T(" + equation + ")")
 
-
 plt.scatter(x,y, label="Orginal data", marker="x")
+
+x = np.linspace(1, 20, 100)
+plt.plot(x, 1/6*x**4, label="O(n^4)   c=1/6, n0 = 11  ")
+
 plt.legend()
 plt.grid(axis='both')
 plt.show()
