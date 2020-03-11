@@ -31,13 +31,10 @@ public class Radix {
 		}
 		
 		boolean done = true;
-		//String s = "" + arr[0];
-		for(int i=1; i < arr.length; i++) {
-			//s += "\n" + arr[i];
-			done &= (arr[i] >= arr[i-1]);
-		}
+
+		for(int i=1; i < arr.length; i++) done &= (arr[i] >= arr[i-1]);		
 		System.out.println("Sorting works? : " + done);
-		//System.out.println(s);
+
 		
 		
 		return null;
@@ -67,10 +64,6 @@ public class Radix {
 		for(int i=0; i<original.length; i++) idx[getDigit(digit, original[i])]++;
 		
 		for(int i=1; i<idx.length;i++) idx[i] += idx[i-1];
-		
-		for(int i=0; i<idx.length;i++) {
-			//System.out.println("idx" +i + " = " + idx[i]);
-		}
 		
 		for(int i=original.length-1;i>=0;i--) {
 			idx[getDigit(digit, original[i])]--;

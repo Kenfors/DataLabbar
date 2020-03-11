@@ -66,6 +66,8 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	
 	public E search(E target) {
 		
+		if(root == null) return null;
+		
 		Queue<Node<E>> queue = new LinkedList<Node<E>>();
 		queue.add(root);
 		
@@ -84,21 +86,15 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	}
 	
 	public E maxRec() {
-		return max(root.data, root);
+		return max(root);
 	}
 	
-	private E max(E max, Node<E> node) {
+	private E max(Node<E> node) {
 		if(node == null) return null;
 		
-		if(max.compareTo(node.data) < 0)
-			max = node.data;
-		E left = max(max, node.left);
-		if(left != null && max.compareTo(left) < 0)
-			max = left;
-		E right = max(max, node.right);
-		if(right != null && max.compareTo(right) < 0)
-			max = right;
-		return max;
+		if(node.right != null)
+			return max(node.right);
+		else return node.data;
 		
 		
 	}
@@ -106,22 +102,12 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	public E maxIte() {
 		
 		if (root==null) return null;
-		Queue<Node<E>> queue = new LinkedList<Node<E>>();
-		E target = root.data;
-		queue.add(root);
 		
-		while(!queue.isEmpty()) {
-			Node<E> current = queue.poll();
-			if(target.compareTo(current.data) < 0)
-				target = current.data;
-			if(current.left != null)
-				queue.add(current.left);
-			if(current.right != null)
-				queue.add(current.right);
-			
-		}
+		Node<E> node = root;
+		while(node.right != null)
+			node= node.right;
 		
-		return target;
+		return node.data;
 	}
 	
 	private E find(E target, Node<E> node) {

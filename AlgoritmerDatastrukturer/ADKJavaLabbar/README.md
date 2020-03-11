@@ -28,13 +28,16 @@ for (int i=1; i <= n; i++) {
 
 ```
 ![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/empirisk.PNG)
-**Uppenbar O(n^3), då koefficienterna på n^4 och n^5 nästan är 0**  
+I grafen ser man att storleksordningen n^3 inte passar helt.
 
-**Koef för kubisk: 5.67, -71.71, 356.33, -455**  
 
-**Uttryck ~ 17/3n^3 - 502/7n^2 + 356n - 455**
+Analys av storleksordningen n^4 passar nästan prick på.
+
+
+
 
 ![Grafer](https://github.com/Kenfors/DataLabbar/blob/master/AlgoritmerDatastrukturer/ADKJavaLabbar/empirisk2.PNG)
+
 
 ##### Uppgift 2.
 

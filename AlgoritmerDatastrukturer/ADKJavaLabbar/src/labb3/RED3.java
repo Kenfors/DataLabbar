@@ -15,7 +15,7 @@ public class RED3 {
 	public static void upg7() {
 		
 		Puzzle p = new Puzzle();
-		p.run(3, 1);
+		p.run(5, 5);
 		
 		
 	}

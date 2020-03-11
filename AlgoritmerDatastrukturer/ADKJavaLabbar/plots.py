@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import fractions
 
 
 # ADD 0?
@@ -29,63 +30,36 @@ y = [
 
 
 plt.title("Uppgift 1")
-plt.ylabel("r")
-plt.xlabel("n")
+plt.ylabel("r - antal operationer")
+plt.xlabel("n - iterationer")
 
 
-"""
-poly = np.polyfit(x,y,2)
-poly_1d = np.poly1d(poly)
-xaxis = np.linspace(x[0], x[-1], 50)
-yaxis = poly_1d(xaxis)
-
-equation = str(round(poly[0], 2)) + "n^2 + " 
-equation += str(round(poly[1],2)) + "n + " 
-equation += str(round(poly[2], 2))
-plt.plot(xaxis, yaxis, label="T(" + equation + ")")
-"""
 poly = np.polyfit(x,y,3)
 poly_1d = np.poly1d(poly)
 xaxis = np.linspace(x[0], x[-1], 50)
 yaxis = poly_1d(xaxis)
 
-equation = str(round(poly[0], 2)) + "n^3 + "
-equation += str(round(poly[1], 2)) + "n^2 + " 
-equation += str(round(poly[2], 2)) + "n + " 
-equation += str(round(poly[3], 2))
+equation  = str(fractions.Fraction(poly[0]).limit_denominator()) + "n^3 + "
+equation += str(fractions.Fraction(poly[1]).limit_denominator()) + "n^2 + "
+equation += str(fractions.Fraction(poly[2]).limit_denominator()) + "n + " 
+equation += str(fractions.Fraction(poly[3]).limit_denominator())
 plt.plot(xaxis, yaxis, label="T(" + equation + ")")
+
 
 poly = np.polyfit(x,y,4)
 poly_1d = np.poly1d(poly)
 xaxis = np.linspace(x[0], x[-1], 50)
 yaxis = poly_1d(xaxis)
 
-equation = str(round(poly[0], 2)) + "n^4 + "
-equation += str(round(poly[1], 2)) + "n^3 + "
-equation += str(round(poly[2], 2)) + "n^2 + " 
-equation += str(round(poly[3], 2)) + "n + " 
-equation += str(round(poly[4], 2))
+equation = str(fractions.Fraction(poly[0]).limit_denominator()) + "n^4 + "
+equation += str(fractions.Fraction(poly[1]).limit_denominator()) + "n^3 + "
+equation += str(fractions.Fraction(poly[2]).limit_denominator()) + "n^2 + "
+equation += str(fractions.Fraction(poly[3]).limit_denominator()) + "n + " 
+equation += str(fractions.Fraction(poly[4]).limit_denominator())
 plt.plot(xaxis, yaxis, label="T(" + equation + ")")
 
 
-poly = np.polyfit(x,y,5)
-poly_1d = np.poly1d(poly)
-xaxis = np.linspace(x[0], x[-1], 50)
-yaxis = poly_1d(xaxis)
-equation = str(round(poly[0], 2)) + "n^5 + "
-equation += str(round(poly[1], 2)) + "n^4 + "
-equation += str(round(poly[2], 2)) + "n^3 + "
-equation += str(round(poly[3], 2)) + "n^2 + " 
-equation += str(round(poly[4], 2)) + "n + " 
-equation += str(round(poly[5], 2))
-plt.plot(xaxis, yaxis, label="T(" + equation + ")")
-
-
-
-plt.scatter(x,y, label="orginal", marker="x")
-
-x = np.linspace(1, 20, 100)
-plt.plot(x, 6*x**3, label="O(n^3), c=6, 2.5 < n0 < 2.7")
-
+plt.scatter(x,y, label="Orginal data", marker="x")
 plt.legend()
+plt.grid(axis='both')
 plt.show()
