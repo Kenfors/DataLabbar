@@ -2,7 +2,19 @@ package labb1;
 
 import java.util.*;
 
-public class Uppgift2<E> implements Iterable<E>, Collection<E>, List {
+public class Uppgift2<E> implements Iterable<E>{
+	
+	
+	private Node<E> head;
+	private Node<E> tail;
+	private int size;
+	
+	public Uppgift2() {
+		head = null;
+		tail = head;
+		size = 0;
+	}
+	
 	
 	private class Node<E> {
 		
@@ -12,187 +24,101 @@ public class Uppgift2<E> implements Iterable<E>, Collection<E>, List {
 		public Node(E inData, Node<E> inNext) {
 			this.data = inData;
 			this.next = inNext;
-			
-		}
-		
-	}
-	private class NodeIterator implements Iterator<E>{
-		
-		private Node<E> point;
-		
-		public NodeIterator(Node<E> n) {
-			point = n;
-		}
-		
-		@Override
-		public boolean hasNext() {
-			// TODO Auto-generated method stub
-			return this.point.next != null;
-		}
-		
-		@SuppressWarnings("unchecked")
-		@Override
-		public E next() {
-			Node<E> current = this.point;
-			this.point = this.point.next;			
-			return current.data;
+
 		}
 		
 	}
 	
-	private Node<E> head;
-	private int size;
-	
-	public Uppgift2() {
-		this.head = null;
-		this.size = 0;
-		
-	}
-	
-	
-	
-	@Override
-	public boolean add(E e) {
-		if (size == 0) {
-			this.head = new Node<E>(e, null);
-			size++;
-			return true;
+	public void add(E data) {
+		if(this.head == null || size == 0) {
+			this.addFirst(data);
 		}
 		else {
-			Node<E> current = head;
-			boolean hasnext = current.next != null;
-			while(hasnext) {
-				current = current.next;				
-			}
-			current.next = new Node<E>(e, null);
-			return true;
+			addAfter(tail, data);
+			tail = tail.next;
 		}
+		this.size++;
 		
 	}
 	
-	public boolean add(int index, E e) {
-		if (index <0 || index >= this.size) throw new IndexOutOfBoundsException();
-		
-		if (this.size == 0) {
-			this.head = new Node<E>(e, null);
-			this.size++;
-			return true;
+	public void add(int index, E data) {
+		if(index > this.size || index < 0) throw new IndexOutOfBoundsException(Integer.toString(index));
+		if(index == 0) {
+			this.addFirst(data);			
+		}
+		else if(index == this.size-1) {
+			addAfter(tail, data);
+			tail = tail.next;
 		}
 		else {
-			Node<E> current = head;
-			boolean hasnext = current.next != null;
-			int iterations = 0;
-			while(hasnext && iterations < index) {
-				current = current.next;
-				iterations++;
-			}
-			current.next = new Node<E>(e, current.next);
-			
-			return true;
+			addAfter(getNode(index-1), data);
 		}
-		
+		this.size++;
 		
 	}
-
-	@Override
-	public boolean addAll(Collection c) {
-		// TODO Auto-generated method stub
-		Iterator<E> iter = c.iterator();
-		while (iter.hasNext()) {
-			this.add(iter.next());
+	
+	private void addFirst(E data) {
+		if(this.head == null) {
+			this.head = new Node<E>(data, null);
+			this.tail = head;
 		}
-		return true;
-	}
-
-	@Override
-	public void clear() {
-		this.head = null;
-		size = 0;
+		else {
+			Node<E> rest = this.head;
+			this.head = new Node<E>(data, null);
+			this.head.next = rest;
+		}
 		
-	}
 
-	@Override
-	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		Iterator<E> iter = this.iterator();
-		while (iter.hasNext()) {
-			if (iter.next() == o) return true;
+	}
+	
+	private Node<E> getNode(int index){
+		Node<E> n = this.head;
+		while(index-- > 0) {
+			n = n.next;
 		}
-		return false;
+		return n;
 	}
-
-	@Override
-	public boolean containsAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		Iterator<?> iter = c.iterator();
-		while(iter.hasNext()) {
-			if(!this.contains(iter.next())) return false;
+	
+	private void addAfter(Node<E> node, E data) {
+		node.next = new Node<E>(data, node.next);
+	}
+	
+	public E get(int index) {
+		if(index < 0 || index > this.size -1) throw new IndexOutOfBoundsException(Integer.toString(index));
+		Node<E> n = this.getNode(index);
+		return n.data;
+	}
+	
+	public E remove(int index) {
+		if(index < 0 || index > this.size -1) throw new IndexOutOfBoundsException(Integer.toString(index));
+		if(index == 0) {
+			E old = this.head.data;
+			this.head = this.head.next;
+			this.size--;
+			return old;
 		}
-		return true;
-	}
+		
+		Node<E> n = this.getNode(index-1);
+		E data = n.next.data;
+		n.next = (n.next != null) ? n.next.next : null;
+		if(index == this.size-1)
+			this.tail = n;
+		this.size--;
+		return data;
 
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return size == 0;
 	}
-
-	@Override
-	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		Iterator<E> iter = this.iterator();
-		Node<E> current = this.head;
-		while(iter.hasNext()) {
-			if(current.next == o) {
-				current.next = current.next.next;
-				return true;
-				
-			}
-			current = head.next;
-			iter.next();
+	
+	public int size() {return this.size;}
+	
+	public String toString() {
+		String str = "[";
+		Node<E> n = this.head;
+		while(n != null) {
+			str += "" + n.data + ",";
+			n = n.next;
 		}
-		return false;
-	}
-
-	@Override
-	public boolean removeAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		Iterator<?> iter = c.iterator();
-		while(iter.hasNext()) {
-			remove(iter.next());
-		}
-		return false;
-	}
-
-	@Override
-	public boolean retainAll(Collection c) {
-		// TODO Auto-generated method stub
-		Iterator<?> iter = c.iterator();
-		while(iter.hasNext()) {
-			Object current = iter.next();
-			if(!this.contains(current)) {
-				this.remove(current);
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return this.size;
-	}
-
-	@Override
-	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object[] toArray(Object[] a) {
-		// TODO Auto-generated method stub
-		return null;
+		str += "]";
+		return str;
 	}
 
 	@Override
@@ -200,81 +126,37 @@ public class Uppgift2<E> implements Iterable<E>, Collection<E>, List {
 		// TODO Auto-generated method stub
 		return new NodeIterator(this.head);
 	}
-
-
-
-	@Override
-	public Object get(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public int indexOf(Object arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public int lastIndexOf(Object arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public ListIterator listIterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public ListIterator listIterator(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public Object remove(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public boolean removeAll(Collection arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-
-	@Override
-	public Object set(int arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public List subList(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 	
 	
+	private class NodeIterator implements Iterator<E>{
+		
+		private Node<E> node;
+		
+		public NodeIterator(Node<E> in) {
+			this.node = in;
+		}
+
+		@Override
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return this.node != null;
+		}
+
+		@Override
+		public E next() {
+			// TODO Auto-generated method stub
+			E data = this.node.data;
+			this.node = this.node.next;
+			return data;
+		}
+		
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+		
+	}
 
 }

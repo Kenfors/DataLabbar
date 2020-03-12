@@ -1,7 +1,7 @@
 package labb1;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+
 
 public class Uppgift3<E> implements Iterable<E>{
 
@@ -33,38 +33,38 @@ public class Uppgift3<E> implements Iterable<E>{
 	
 	private class NodeIterator implements Iterator<E>{
 		
-		private Node<E> current;
-		private Node<E> last;
+		private Node<E> node;
+		private Node<E> before;
 		
-		
-		public NodeIterator(Node<E> head) {
-			this.current = head;
-			this.last = null;
+		public NodeIterator() {
+			this.node = head;
+			this.before = null;
 		}
 
 		@Override
 		public boolean hasNext() {
 			// TODO Auto-generated method stub
-			return current.next != null;
+			return this.node != null;
 		}
 
 		@Override
 		public E next() {
 			// TODO Auto-generated method stub
-			if(this.current == null) throw new NoSuchElementException();
-			if(last == null) {
-				last = current;
-				return current.data;
-			}
-			this.last = this.current;
-			this.current = this.current.next;
-			return current.data;
+			E data = this.node.data;			
+			this.before = this.node;
+			this.node = this.node.next;
+			return data;
 		}
 		
 		@Override
 		public void remove() {
-			last.next = (hasNext()) ? current.next : null;
-			
+			if(before == null) {
+				head = head.next;
+			}
+			if(node != null)
+				node = node.next;
+			before.next = node;
+
 		}
 		
 	}
@@ -129,25 +129,6 @@ public class Uppgift3<E> implements Iterable<E>{
 		return removed;
 	}
 	
-	/*
-	public E remove(int index) {
-		if(index > this.size-1 || index < 0) throw new IndexOutOfBoundsException("" + index);
-		Node<E> current = head;
-		E removed;
-		if(index == 0) {
-			removed = head.data;
-			this.head = head.next;
-			this.size--;
-			return removed;
-		}
-		
-		while(--index > 0) current = current.next;
-		removed = current.next.data;
-		current.next = (current.next == null) ? null : current.next.next;
-		this.size--;
-		return removed;
-	}
-	*/
 	
 	public String toString() {
 		if (size == 0) return "[]";
@@ -162,7 +143,7 @@ public class Uppgift3<E> implements Iterable<E>{
 	}
 	
 	public Iterator<E> iterator(){
-		return new NodeIterator(this.head);
+		return new NodeIterator();
 	}
 	
 }

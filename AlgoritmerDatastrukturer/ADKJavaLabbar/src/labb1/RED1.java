@@ -16,7 +16,7 @@ public class RED1 {
 		// Alla labbar (tryck enter för gå till nästa)
 		//labb1();
 		
-		//demoupg1();
+		//demoupg2();
 		
 		//demoupg3();
 		
@@ -39,7 +39,7 @@ public class RED1 {
 	 * */
 	
 	public static void red1() {
-		Uppgift2b<String> l = new Uppgift2b<String>();
+		Uppgift2<String> l = new Uppgift2<String>();
 		
 		for (int i = 0; i<4 ; i++) {
 			l.add("e" + i);
@@ -70,7 +70,7 @@ public class RED1 {
 		
 		iter.next();
 		iter.remove();
-
+		iter.remove();
 		iter.remove();
 		
 		
@@ -97,7 +97,7 @@ public class RED1 {
 	};
 	
 	public static void demoupg2() {
-		Uppgift2b<String> listclass = new Uppgift2b<String>();
+		Uppgift2<String> listclass = new Uppgift2<String>();
 		
 		listclass.add("test1");
 		listclass.add("test2");
@@ -131,7 +131,8 @@ public class RED1 {
 		System.out.println(listclass);
 		System.out.println("Remove tail: " + listclass.remove(listclass.size()-1) + ", New tail:" + listclass.get(listclass.size()-1));
 		System.out.println(listclass);
-				
+		System.out.println("Remove tail: " + listclass.remove(listclass.size()-1) + ", empty");
+		System.out.println(listclass);
 	}
 	
 	public static void demoupg3() {
